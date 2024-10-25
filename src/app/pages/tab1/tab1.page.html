@@ -13,5 +13,37 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <h1>Listado de Vacances</h1>
+
+<div>
+    <div *ngFor="let v of vacances; index as $i">Vacanca: {{v.nom}}
+        <span class="link" (click)="removeVacanca(v)">remove</span>
+        <span class="link" (click)="editVacanca(v.id!)">edit</span>
+    </div>
+</div>
+
+<h1>Insertar Vacanca</h1>
+
+<div>
+
+    <form [formGroup]="vacancaForm">
+
+        Nom:
+        <input type="text" formControlName="nom" /> <br/>
+
+        Preu:
+        <input type="text" formControlName="preu" /> <br/>
+
+        Pais:
+        <input type="text" formControlName="pais" /> <br/>
+
+        Descripcio
+        <input type="text" formControlName="descripcio" /> <br/>
+
+        <button type="button" (click)="saveVacanca()">Save Vacanca</button>
+
+    </form>
+
+</div>
+
 </ion-content>

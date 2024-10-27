@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonButton, IonButtons, IonIcon } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, 
+    IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
 
@@ -43,7 +44,7 @@ export class LoginPage implements OnInit {
 		const user = await this.authService.register(this.credentials.value);
 
 		if (user) {
-			this.router.navigateByUrl('/home', { replaceUrl: true });
+			this.router.navigateByUrl('/', { replaceUrl: true });
 		} else {
 			this.showAlert('Registration failed', 'Please try again!');
 		}
@@ -54,7 +55,7 @@ export class LoginPage implements OnInit {
     const user = await this.authService.login(this.credentials.value);
 
 		if (user) {
-			this.router.navigateByUrl('/home', { replaceUrl: true });
+			this.router.navigateByUrl('/', { replaceUrl: true });
 		} else {
 			this.showAlert('Login failed', 'Please try again!');
 		}

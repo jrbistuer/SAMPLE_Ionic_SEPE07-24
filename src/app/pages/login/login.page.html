@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">login</ion-title>
@@ -13,11 +13,16 @@
 
   <form (ngSubmit)="login()" [formGroup]="credentials">
 
-    <input type="email" placeholder="Email" formControlName="email" />
-    <input type="password" placeholder="Password" formControlName="password" />
+    <ion-item>
+      <ion-input label="Email" labelPlacement="floating" placeholder="Email"  formControlName="email"></ion-input>
+    </ion-item>
 
-    <button type="submit" expand="block" [disabled]="!credentials.valid">Log in</button>
-    <button type="button" expand="block" color="secondary" (click)="register()">Create account</button>
+    <ion-item>
+      <ion-input label="Password" labelPlacement="floating" placeholder="Password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" shape="round" expand="block" [disabled]="!credentials.valid">Login</ion-button>
+    <ion-button type="button" shape="round" expand="block" color="secondary" (click)="register()">Create account</ion-button>
 
   </form>
 

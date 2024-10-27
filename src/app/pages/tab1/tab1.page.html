@@ -3,10 +3,15 @@
     <ion-title>
       Tab 1
     </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="closeSession()">
+        <ion-icon slot="start" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
@@ -24,25 +29,54 @@
 
 <h1>Insertar Vacanca</h1>
 
-<div>
+<div *ngIf="vacancaForm !== undefined">
 
-    <form [formGroup]="vacancaForm">
+  <form [formGroup]="vacancaForm">
 
-        Nom:
-        <input type="text" formControlName="nom" /> <br/>
-
-        Preu:
-        <input type="text" formControlName="preu" /> <br/>
-
-        Pais:
-        <input type="text" formControlName="pais" /> <br/>
-
-        Descripcio
-        <input type="text" formControlName="descripcio" /> <br/>
-
-        <button type="button" (click)="saveVacanca()">Save Vacanca</button>
-
-    </form>
+    <ion-item>
+      <ion-input label="Nom" labelPlacement="floating" placeholder="Nom" formControlName="nom"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="vacancaForm.get('nom')?.touched && vacancaForm.get('nom')?.hasError('required')">
+      Nom es requerido.
+    </ion-text>
+    <ion-text color="danger" *ngIf="vacancaForm.get('nom')?.touched && vacancaForm.get('nom')?.hasError('minlength')">
+      El nom debe tener al menos 3 caracteres.
+    </ion-text>
+  
+    <ion-item>
+      <ion-input label="Preu" labelPlacement="floating" placeholder="Preu" type="text" formControlName="preu"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="vacancaForm.get('preu')?.touched && vacancaForm.get('preu')?.hasError('required')">
+      Preu es requerido.
+    </ion-text>
+    <ion-text color="danger" *ngIf="vacancaForm.get('preu')?.touched && vacancaForm.get('preu')?.hasError('pattern')">
+      Preu debe ser un número.
+    </ion-text>
+  
+    <ion-item>
+      <ion-input label="Pais" labelPlacement="floating" placeholder="Pais" type="text" formControlName="pais"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="vacancaForm.get('pais')?.touched && vacancaForm.get('pais')?.hasError('required')">
+      Pais es requerido.
+    </ion-text>
+    <ion-text color="danger" *ngIf="vacancaForm.get('pais')?.touched && vacancaForm.get('pais')?.hasError('minlength')">
+      Pais debe tener al menos 2 caracteres.
+    </ion-text>
+  
+    <ion-item>
+      <ion-textarea label="Descripció" labelPlacement="floating" placeholder="Descripció" formControlName="descripcio"></ion-textarea>
+    </ion-item>
+    <ion-text color="danger" *ngIf="vacancaForm.get('descripcio')?.touched && vacancaForm.get('descripcio')?.hasError('required')">
+      Descripció es requerida.
+    </ion-text>
+    <ion-text color="danger" *ngIf="vacancaForm.get('descripcio')?.touched && vacancaForm.get('descripcio')?.hasError('maxlength')">
+      Descripció no puede superar los 150 caracteres.
+    </ion-text>
+  
+    <ion-button shape="round" expand="block" (click)="saveVacanca()">Save Vacanca</ion-button>
+  
+  </form>
+  
 
 </div>
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,8 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 export class AuthService {
 
   
-	constructor(private auth: Auth) {}
+	constructor(private auth: Auth,
+		private router: Router) {}
 
 	async register({ email, password }: { email: string, password: string }) { 
 		try {
@@ -27,8 +29,10 @@ export class AuthService {
 		}
 	}
 
-	logout() {
-		return signOut(this.auth);
+	async logout() {
+		await signOut(this.auth).then(() => {
+			this.router.navigate(['/login']);
+		});
 	}
 
 }

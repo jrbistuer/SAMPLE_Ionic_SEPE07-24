@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "32213368281",
+    "project_id": "del-cifo02",
+    "storage_bucket": "del-cifo02.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32213368281:android:068b42ded03abf7002adc8",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK8GfETtsg4DdB703ktJ_QOSVbvhgpqbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
